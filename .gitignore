@@ -1,5 +1,4 @@
 db/mysql/*
-!db/mysql/wordpress_db
 
 # Log files
 *.log
