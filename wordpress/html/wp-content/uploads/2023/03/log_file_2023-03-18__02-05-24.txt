@@ -1,0 +1,203 @@
+
+---Downloaded files---
+The import files for: Perfect Portfolio Demo were successfully downloaded!
+Initial max execution time = 30
+Files info:
+Site URL = http://localhost:8080
+Data file = /var/www/html/wp-content/uploads/rara-demo-pack/perfect-portfolio-demo-content/content/perfectportfolio.xml
+Widget file = /var/www/html/wp-content/uploads/rara-demo-pack/perfect-portfolio-demo-content/content/perfectportfolio.wie
+Customizer file = /var/www/html/wp-content/uploads/rara-demo-pack/perfect-portfolio-demo-content/content/perfectportfolio.dat
+
+------
+Completed AJAX call number: 1
+[WARNING] Failed to import product_cat Albums
+[WARNING] Failed to import pa_color Black
+[WARNING] Failed to import pa_color Blue
+[WARNING] Failed to import rara_portfolio_categories Brand Strategy
+[WARNING] Failed to import product_cat Clothing
+[WARNING] Failed to import rara_portfolio_categories Digital Arts
+[WARNING] Failed to import product_visibility exclude-from-catalog
+[WARNING] Failed to import product_visibility exclude-from-search
+[WARNING] Failed to import product_type external
+[WARNING] Failed to import product_visibility featured
+[WARNING] Failed to import pa_color Green
+[WARNING] Failed to import product_type grouped
+[WARNING] Failed to import product_cat Hoodies
+[WARNING] Failed to import product_cat Music
+[WARNING] Failed to import product_visibility outofstock
+[WARNING] Failed to import rara_portfolio_categories Photography
+[WARNING] Failed to import product_cat Posters
+[WARNING] Failed to import product_visibility rated-1
+[WARNING] Failed to import product_visibility rated-2
+[WARNING] Failed to import product_visibility rated-3
+[WARNING] Failed to import product_visibility rated-4
+[WARNING] Failed to import product_visibility rated-5
+[WARNING] Failed to import product_type simple
+[WARNING] Failed to import product_cat Singles
+[WARNING] Failed to import product_cat T-shirts
+[WARNING] Failed to import product_cat Uncategorized
+[WARNING] Failed to import product_type variable
+[WARNING] Failed to import rara_portfolio_categories Web Design
+
+
+------
+Completed AJAX call number: 2
+[WARNING] Failed to import product_cat Albums
+[WARNING] Failed to import pa_color Black
+[WARNING] Failed to import pa_color Blue
+[WARNING] Failed to import product_cat Clothing
+[WARNING] Failed to import product_visibility exclude-from-catalog
+[WARNING] Failed to import product_visibility exclude-from-search
+[WARNING] Failed to import product_type external
+[WARNING] Failed to import product_visibility featured
+[WARNING] Failed to import pa_color Green
+[WARNING] Failed to import product_type grouped
+[WARNING] Failed to import product_cat Hoodies
+[WARNING] Failed to import product_cat Music
+[WARNING] Failed to import product_visibility outofstock
+[WARNING] Failed to import product_cat Posters
+[WARNING] Failed to import product_visibility rated-1
+[WARNING] Failed to import product_visibility rated-2
+[WARNING] Failed to import product_visibility rated-3
+[WARNING] Failed to import product_visibility rated-4
+[WARNING] Failed to import product_visibility rated-5
+[WARNING] Failed to import product_type simple
+[WARNING] Failed to import product_cat Singles
+[WARNING] Failed to import product_cat T-shirts
+[WARNING] Failed to import product_cat Uncategorized
+[WARNING] Failed to import product_type variable
+
+
+------
+Completed AJAX call number: 3
+[WARNING] Failed to import product_cat Albums
+[WARNING] Failed to import pa_color Black
+[WARNING] Failed to import pa_color Blue
+[WARNING] Failed to import product_cat Clothing
+[WARNING] Failed to import product_visibility exclude-from-catalog
+[WARNING] Failed to import product_visibility exclude-from-search
+[WARNING] Failed to import product_type external
+[WARNING] Failed to import product_visibility featured
+[WARNING] Failed to import pa_color Green
+[WARNING] Failed to import product_type grouped
+[WARNING] Failed to import product_cat Hoodies
+[WARNING] Failed to import product_cat Music
+[WARNING] Failed to import product_visibility outofstock
+[WARNING] Failed to import product_cat Posters
+[WARNING] Failed to import product_visibility rated-1
+[WARNING] Failed to import product_visibility rated-2
+[WARNING] Failed to import product_visibility rated-3
+[WARNING] Failed to import product_visibility rated-4
+[WARNING] Failed to import product_visibility rated-5
+[WARNING] Failed to import product_type simple
+[WARNING] Failed to import product_cat Singles
+[WARNING] Failed to import product_cat T-shirts
+[WARNING] Failed to import product_cat Uncategorized
+[WARNING] Failed to import product_type variable
+
+
+---Importing content---
+[WARNING] Failed to import product_cat Albums
+[WARNING] Failed to import pa_color Black
+[WARNING] Failed to import pa_color Blue
+[WARNING] Failed to import product_cat Clothing
+[WARNING] Failed to import product_visibility exclude-from-catalog
+[WARNING] Failed to import product_visibility exclude-from-search
+[WARNING] Failed to import product_type external
+[WARNING] Failed to import product_visibility featured
+[WARNING] Failed to import pa_color Green
+[WARNING] Failed to import product_type grouped
+[WARNING] Failed to import product_cat Hoodies
+[WARNING] Failed to import product_cat Music
+[WARNING] Failed to import product_visibility outofstock
+[WARNING] Failed to import product_cat Posters
+[WARNING] Failed to import product_visibility rated-1
+[WARNING] Failed to import product_visibility rated-2
+[WARNING] Failed to import product_visibility rated-3
+[WARNING] Failed to import product_visibility rated-4
+[WARNING] Failed to import product_visibility rated-5
+[WARNING] Failed to import product_type simple
+[WARNING] Failed to import product_cat Singles
+[WARNING] Failed to import product_cat T-shirts
+[WARNING] Failed to import product_cat Uncategorized
+[WARNING] Failed to import product_type variable
+[WARNING] Failed to import "Woo Logo": Invalid post type product
+[WARNING] Failed to import "Premium Quality": Invalid post type product
+[WARNING] Failed to import "Ship Your Idea": Invalid post type product
+[WARNING] Failed to import "Ninja Silhouette": Invalid post type product
+[WARNING] Failed to import "Woo Ninja": Invalid post type product
+[WARNING] Failed to import "Happy Ninja": Invalid post type product
+[WARNING] Failed to import "Ship Your Idea": Invalid post type product
+[WARNING] Failed to import "Woo Ninja": Invalid post type product
+[WARNING] Failed to import "Patient Ninja": Invalid post type product
+[WARNING] Failed to import "Happy Ninja": Invalid post type product
+[WARNING] Failed to import "Ninja Silhouette": Invalid post type product
+[WARNING] Failed to import "Woo Logo": Invalid post type product
+[WARNING] Failed to import "Ship Your Idea": Invalid post type product
+[WARNING] Failed to import "Flying Ninja": Invalid post type product
+[WARNING] Failed to import "Premium Quality": Invalid post type product
+[WARNING] Failed to import "Woo Ninja": Invalid post type product
+[WARNING] Failed to import "Woo Logo": Invalid post type product
+[WARNING] Failed to import "Woo Album #1": Invalid post type product
+[WARNING] Failed to import "Woo Album #2": Invalid post type product
+[WARNING] Failed to import "Woo Album #3": Invalid post type product
+[WARNING] Failed to import "Woo Single #1": Invalid post type product
+[WARNING] Failed to import "Woo Album #4": Invalid post type product
+[WARNING] Failed to import "Woo Single #2": Invalid post type product
+
+Max execution time after content import = 300
+
+---Importing widgets---
+Sidebar : 
+
+Search - No Title - Imported
+Recent Posts - No Title - Imported
+Recent Comments - No Title - Imported
+Archives - No Title - Imported
+Categories - No Title - Imported
+Meta - No Title - Imported
+newsletterwidget - Join my Newsletter ! - Site does not support widget
+Text - About Me - Imported
+Rara: Social Media - Subscribe and Follow - Imported
+
+About Section : 
+
+Rara: Icon Text - I’m Francisco Adams - Imported
+
+Call To Action Section : 
+
+Rara: Call To Action - Start your journey right now! Build unique websites with our creative tool. - Imported
+
+Services Section : 
+
+Text - What I Love Doing - Imported
+Rara: Icon Text - Web Branding and Marketing - Imported
+Rara: Icon Text - Web / User Interface - Imported
+Rara: Icon Text - Creative Photography - Imported
+Rara: Icon Text - Product Design - Imported
+Rara: Icon Text - Web Hosting - Imported
+Rara: Icon Text - Awesome Support - Imported
+
+Call To Action Footer : 
+
+Rara: Call To Action - Start your journey right now! Build unique websites with our creative tool. - Imported
+
+Footer One : 
+
+Text - About Us - Imported
+
+Footer Two : 
+
+Rara: Recent Post - Recent Posts - Imported
+
+Footer Three : 
+
+Text - Contact - Imported
+
+
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---rrdi/after_import---
+

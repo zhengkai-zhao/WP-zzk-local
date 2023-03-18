@@ -1,0 +1,10 @@
+db/mysql/*
+!db/mysql/wordpress_db
+
+# Log files
+*.log
+
+# htaccess
+/.htaccess
+.DS_Store
+wordpress/html/license.txt
