@@ -1,4 +1,4 @@
-db/mysql/*
+db/*
 
 # Log files
 *.log
