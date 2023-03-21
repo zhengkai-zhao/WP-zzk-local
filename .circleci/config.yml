@@ -67,7 +67,6 @@ jobs:
               --admin_user=$WP_TEST_USER \
               --admin_password=$WP_TEST_USER_PASS \
               --admin_email="$WP_TEST_USER@wordpress.dev" \
-              --path=wordpress
 
             # Get the database
             sshpass -e ssh -q -o StrictHostKeyChecking=no USER@TARGET.domain -p 10349 'wp db export - --single-transaction' > database.sql
@@ -79,8 +78,8 @@ jobs:
 
             # Get alternative router so we can do without Apache or nginx
             cd ~/repo
-            curl -s https://raw.githubusercontent.com/Seravo/wordpress-test-template/master/lib/router.php > htdocs/router.php
-            cd htdocs
+            curl -s https://raw.githubusercontent.com/Seravo/wordpress-test-template/master/lib/router.php > wordpress/router.php
+            cd wordpress
             ls
 
             php -S 0.0.0.0:8080 router.php &
