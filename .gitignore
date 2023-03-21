@@ -7,3 +7,4 @@ db/*
 /.htaccess
 .DS_Store
 wordpress/html/license.txt
+wordpress/html/.htaccess
