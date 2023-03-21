@@ -1,4 +1,9 @@
-db/*
+db/
+vendor/
+.circleci/
+php/
+
+.circleci/*
 
 # Log files
 *.log
