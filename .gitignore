@@ -2,6 +2,7 @@ db/
 vendor/
 .circleci/
 php/
+src/
 
 .circleci/*
 

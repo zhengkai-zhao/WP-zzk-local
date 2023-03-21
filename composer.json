@@ -1,5 +1,16 @@
 {
-  "require": {
-      "php": "^7.0||^8.0"
-  }
+  "name": "zhaozhengkai/zzkwordpress",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Zhaozhengkai\\Zzkwordpress\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "zhao-zhengkai",
+      "email": "nickenchao@gmail.com"
+    }
+  ],
+  "require": {}
 }
