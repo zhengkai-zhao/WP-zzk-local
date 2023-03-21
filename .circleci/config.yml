@@ -51,10 +51,9 @@ jobs:
             cd wordpress/html/wp-content/themes/perfect-portfolio
             npm install # Builds using prod conf
 
-      - run:
+      - run: wp core download
           name: Install WordPress
           command: |
-            wp core download
             # set +eo pipefail
             # set -x
 
