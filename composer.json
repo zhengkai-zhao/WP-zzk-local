@@ -12,5 +12,21 @@
       "email": "nickenchao@gmail.com"
     }
   ],
-  "require": {}
+  "require": {
+    "mouf/nodejs-installer": "~1.0"
+  },
+  "extra": {
+    "mouf": {
+      "nodejs": {
+        "version": "~0.12",
+        "targetDir": "vendor/nodejs/nodejs",
+        "forceLocal": false
+      }
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "mouf/nodejs-installer": true
+    }
+  }
 }
