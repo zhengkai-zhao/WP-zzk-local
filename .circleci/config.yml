@@ -67,7 +67,7 @@ jobs:
               --admin_user=$WP_TEST_USER \
               --admin_password=$WP_TEST_USER_PASS \
               --admin_email="$WP_TEST_USER@wordpress.dev" \
-              --path=htdocs/wordpress
+              --path=wordpress
 
             # Get the database
             sshpass -e ssh -q -o StrictHostKeyChecking=no USER@TARGET.domain -p 10349 'wp db export - --single-transaction' > database.sql
@@ -75,7 +75,7 @@ jobs:
             rm database.sql
 
             # Activate all plugins
-            php wp-cli.phar plugin activate --all --path=htdocs/wordpress
+            php wp-cli.phar plugin activate --all --path=wordpress
 
             # Get alternative router so we can do without Apache or nginx
             cd ~/repo
