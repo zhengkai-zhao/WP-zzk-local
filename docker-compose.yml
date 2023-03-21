@@ -14,7 +14,7 @@ services:
 
   wordpress:
     image: wordpress:latest
-    #container_name: "wordpress"
+    container_name: "wordpress"
     volumes:
       - ./wordpress/html:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
