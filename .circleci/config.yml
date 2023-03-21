@@ -38,7 +38,6 @@ jobs:
             - v1-dependencies-
 
       - run: composer install -n --prefer-dist
-          working_directory: wordpress/html/wp-includes/sodium_compat
 
       - save_cache:
           key: v1-dependencies-{{ checksum "wordpress/html/wp-includes/sodium_compat/composer.json" }}
