@@ -53,11 +53,11 @@ jobs:
           command: |
             # Handle restarting nginx and so on...
             if [ $CIRCLE_BRANCH == 'master' ]; then
-              sshpass -e rsync -av --progress --exclude='node_modules' --delete --exclude='*/wp-content/uploads/*' -e 'ssh -T -o Compression=no -o StrictHostKeyChecking=no -p 10349' ~/repo/ USER@TARGET.domain:/data/wordpress
+              sshpass -d rsync -av --progress --exclude='node_modules' --delete --exclude='*/wp-content/uploads/*' -d 'ssh -T -o Compression=no -o StrictHostKeyChecking=no -p 10349' ~/repo/ USER@TARGET.domain:/data/wordpress
             fi
 
             if [ $CIRCLE_BRANCH == 'production' ]; then
-              sshpass -e rsync -av --progress --exclude='node_modules' --delete --exclude='*/wp-content/uploads/*' -e 'ssh -T -o Compression=no -o StrictHostKeyChecking=no -p 10298' ~/repo/ USER@TARGET.domain:/data/wordpress
+              sshpass -d rsync -av --progress --exclude='node_modules' --delete --exclude='*/wp-content/uploads/*' -d 'ssh -T -o Compression=no -o StrictHostKeyChecking=no -p 10298' ~/repo/ USER@TARGET.domain:/data/wordpress
             fi
 
       - save_cache:
