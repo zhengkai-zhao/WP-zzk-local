@@ -12,7 +12,7 @@ jobs:
             composer install --no-interaction
       - run:
           name: Start MySQL Service
-          command: sudo mysql.server start
+          command: brew services start mysql
       - run:
           name: Create MySQL Database
           command: mysql -e 'CREATE DATABASE wordpress;'
