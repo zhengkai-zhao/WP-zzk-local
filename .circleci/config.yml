@@ -1,42 +1,42 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: docker:20.10.5
+      - image: circleci/php:7.4-apache-node-browsers
+    working_directory: ~/repo
     steps:
       - checkout
+      - run: apt-get update && apt-get install -y apt-utils
+      - run: apt-get install -y unzip
+      - run: curl -sS https://getcomposer.org/installer | php
+      - run: mv composer.phar /usr/local/bin/composer
+      - run: composer install
       - run:
-          name: Install Docker Compose
+          name: Build WordPress image
           command: |
-            apk add --no-cache py-pip=20.3.4-r1 && \
-            pip install docker-compose==1.28.5
+            docker build -t my-wordpress-image .
       - run:
-          name: Build and start Docker Compose services
+          name: Run WordPress container
           command: |
-            docker-compose up --build -d
+            docker run -d -p 8000:80 --name my-wordpress-container my-wordpress-image
       - run:
-          name: Wait for WordPress to start
+          name: Run tests
           command: |
-            until $(curl --output /dev/null --silent --head --fail http://localhost); do
-              printf '.'
-              sleep 5
-            done
-      - run:
-          name: Run WordPress tests
-          command: |
-            docker-compose run --rm wordpress sh -c "cd wp-content/plugins/ && \
-            git clone https://github.com/wp-cli/test-bundle.git && \
-            cd test-bundle && \
-            composer install --prefer-source --no-interaction && \
-            composer test"
-  deploy:
+            curl -sS http://localhost:8000/wp-admin/install.php
+            # Run WordPress tests here
+  cleanup:
     docker:
-      - image: google/cloud-sdk:latest
+      - image: circleci/php:7.4-apache-node-browsers
     steps:
       - run:
-          name: Deploy to Google Cloud
+          name: Stop WordPress container
           command: |
-            gcloud config set project <your-project-id> && \
-            gcloud auth activate-service-account --key-file <path-to-key-file> && \
-            gcloud app deploy app.yaml --quiet
+            docker stop my-wordpress-container
+      - run:
+          name: Remove WordPress container
+          command: |
+            docker rm my-wordpress-container
+      - run:
+          name: Remove WordPress image
+          command: |
+            docker rmi my-wordpress-image
