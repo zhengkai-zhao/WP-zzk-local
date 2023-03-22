@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4-apache-node-browsers
+      - image: circleci/php:8.0-apache-node-browsers
     working_directory: ~/repo
     steps:
       - checkout
@@ -14,11 +14,11 @@ jobs:
       - run:
           name: Build WordPress image
           command: |
-            docker build -t my-wordpress-image .
+            docker build -t wordpress:latest .
       - run:
           name: Run WordPress container
           command: |
-            docker run -d -p 8000:80 --name my-wordpress-container my-wordpress-image
+            docker run -d -p 8000:80 --name wordpress wordpress:latest
       - run:
           name: Run tests
           command: |
@@ -31,12 +31,12 @@ jobs:
       - run:
           name: Stop WordPress container
           command: |
-            docker stop my-wordpress-container
+            docker stop wordpress
       - run:
           name: Remove WordPress container
           command: |
-            docker rm my-wordpress-container
+            docker rm wordpress
       - run:
           name: Remove WordPress image
           command: |
-            docker rmi my-wordpress-image
+            docker rmi wordpress:latest
