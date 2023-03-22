@@ -14,3 +14,6 @@ src/
 .DS_Store
 wordpress/html/license.txt
 wordpress/html/.htaccess
+wp-cli.phar
+Brewfile
+wordpress/html/mysql.sock
