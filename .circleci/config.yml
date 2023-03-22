@@ -6,8 +6,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: apt-get update && apt-get install -y apt-utils
-      - run: apt-get install -y unzip
       - run: curl -sS https://getcomposer.org/installer | php
       - run: mv composer.phar /usr/local/bin/composer
       - run: composer install
