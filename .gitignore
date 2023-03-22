@@ -1,4 +1,10 @@
-db/*
+db/
+vendor/
+.circleci/
+php/
+src/
+
+.circleci/*
 
 # Log files
 *.log
@@ -8,3 +14,6 @@ db/*
 .DS_Store
 wordpress/html/license.txt
 wordpress/html/.htaccess
+wp-cli.phar
+Brewfile
+wordpress/html/mysql.sock

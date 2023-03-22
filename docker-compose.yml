@@ -14,7 +14,7 @@ services:
 
   wordpress:
     image: wordpress:latest
-    #container_name: "wordpress"
+    container_name: "wordpress"
     volumes:
       - ./wordpress/html:/var/www/html
       - ./php/php.ini:/usr/local/etc/php/conf.d/php.ini
@@ -32,7 +32,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     platform: linux/amd64
-    #container_name: "phpmyadmin"
+    container_name: "phpmyadmin"
     restart: always
     depends_on:
       - db
