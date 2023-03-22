@@ -8,7 +8,7 @@ jobs:
       - checkout
       - deploy:
           command: |
-            sudo pip install fabric
+            sudo pip install --upgrade pip
             fab -f ./fabfile.py
 
 workflows:
