@@ -1,29 +1,42 @@
-version: 2
+version: 2.1
+
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4-node-browsers
-    working_directory: ~/repo
+      - image: docker:20.10.5
     steps:
       - checkout
       - run:
-          name: Install Composer Dependencies
+          name: Install Docker Compose
           command: |
-            composer install --no-interaction
+            apk add --no-cache py-pip=20.3.4-r1 && \
+            pip install docker-compose==1.28.5
       - run:
-          name: Start MySQL Service
-          command: brew services start mysql
-      - run:
-          name: Create MySQL Database
-          command: mysql -e 'CREATE DATABASE wordpress;'
-      - run:
-          name: Install WordPress
+          name: Build and start Docker Compose services
           command: |
-            wp core download --path=./wordpress/html
-            wp config create --dbname=wordpress_db --dbuser=user
-            wp core install --url=http://localhost --title=zzk --admin_user=admin --admin_password=password --admin_email=nickenchao@gmail.com --path=./wordpress/html
+            docker-compose up --build -d
       - run:
-          name: Run PHPUnit Tests
+          name: Wait for WordPress to start
           command: |
-            cd wordpress/wp-content/plugins/my-plugin
-            ./vendor/bin/phpunit
+            until $(curl --output /dev/null --silent --head --fail http://localhost); do
+              printf '.'
+              sleep 5
+            done
+      - run:
+          name: Run WordPress tests
+          command: |
+            docker-compose run --rm wordpress sh -c "cd wp-content/plugins/ && \
+            git clone https://github.com/wp-cli/test-bundle.git && \
+            cd test-bundle && \
+            composer install --prefer-source --no-interaction && \
+            composer test"
+  deploy:
+    docker:
+      - image: google/cloud-sdk:latest
+    steps:
+      - run:
+          name: Deploy to Google Cloud
+          command: |
+            gcloud config set project <your-project-id> && \
+            gcloud auth activate-service-account --key-file <path-to-key-file> && \
+            gcloud app deploy app.yaml --quiet
