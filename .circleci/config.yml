@@ -1,21 +1,7 @@
-version: 2
 jobs:
-  deploy:
+  build:
     docker:
-      - image: circleci/python:2.7-jessie-browsers-legacy
-
+      - image: cimg/php:8.2.4
     steps:
       - checkout
-      - deploy:
-          command: |
-            sudo pip install --upgrade pip
-            fab -f ./fabfile.py
-
-workflows:
-  version: 2
-  deploy:
-    jobs:
-      - deploy:
-          filters:
-            branches:
-              only: master
+      - run: php --version
