@@ -21,7 +21,7 @@ jobs:
           environment:
             DOCKER_BUILDKIT: 1
       - run:
-          name: Run Docker container
+          name: Run WordPress Docker container
           command: |
             docker run -d -p 8080:80 wordpress
             sleep 10
@@ -34,7 +34,7 @@ jobs:
               -e WORDPRESS_DB_USER=$WORDPRESS_DB_USER \
               -e WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
               -e WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME \
-              my-wordpress-app:latest
+              wordpress:latest
       - run:
           name: Run WordPress tests
           command: |
