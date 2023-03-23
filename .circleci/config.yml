@@ -5,6 +5,10 @@ jobs:
       - image: docker:stable
     steps:
       - checkout
+      - run:
+          name: Install Git
+          command: |
+            brew install git
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
