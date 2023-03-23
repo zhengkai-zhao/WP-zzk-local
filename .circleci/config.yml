@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Run WordPress tests
           command: |
-            cd /wp-content/plugins/
+            cd /var/www/html/wp-content/plugins/
             composer install
             phpunit
   deploy:
