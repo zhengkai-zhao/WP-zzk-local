@@ -1,13 +1,14 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4-apache-node-browsers
-    working_directory: ~/repo
+      - image: docker:stable
+
     steps:
       - checkout
-      - run:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      run:
           name: Install dependencies
           command: |
             apt-get update && apt-get install -y \
@@ -29,30 +30,22 @@ jobs:
             curl https://getcomposer.org/installer | php
             mv composer.phar /usr/local/bin/composer
       - run:
-          name: Clone WordPress Core
+          name: Build WordPress Docker image
           command: |
-            git clone --depth=1 https://github.com/WordPress/WordPress.git ~/repo/wordpress
-            cd ~/repo/wordpress
-            composer install --prefer-dist --no-dev
+            docker build -t wordpress:latest .
+          environment:
+            DOCKER_BUILDKIT: 1
       - run:
-          name: Configure WordPress
+          name: Run WordPress Docker container
           command: |
-            cd ~/repo/wordpress
-            mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
-            cp wp-tests-config-sample.php wp-tests-config.php
-            sed -i 's/youremptytestdbnamehere/wordpress_test/' wp-tests-config.php
-            sed -i 's/yourusernamehere/root/' wp-tests-config.php
-            sed -i 's/yourpasswordhere//' wp-tests-config.php
-            sed -i 's|localhost|127.0.0.1|' wp-tests-config.php
+            docker run --name wordpress -p 8080:80 -d wordpress:latest
       - run:
-          name: Install PHPUnit
+          name: Run WordPress installation
           command: |
-            cd ~/repo/wordpress
-            wget -O phpunit https://phar.phpunit.de/phpunit-9.phar
-            chmod +x phpunit
-            sudo mv phpunit /usr/local/bin/phpunit
+            docker exec -it wordpress /bin/bash -c "curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress/* /var/www/html && rm latest.tar.gz"
       - run:
           name: Run WordPress tests
           command: |
-            cd ~/repo/wordpress
-            phpunit --configuration phpunit.xml.dist
+            composer install
+            phpunit
+  
