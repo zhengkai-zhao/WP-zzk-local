@@ -1,16 +1,16 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/app
+    working_directory: ./wordpress/html
     docker:
       - image: docker:stable
       - image: wordpress:latest
 
     environment:
-      - WORDPRESS_DB_HOST=mysql
-      - WORDPRESS_DB_USER=root
-      - WORDPRESS_DB_PASSWORD=password
-      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_NAME=wordpress_db
+      - WORDPRESS_DB_USER=user
+      - WORDPRESS_DB_PASSWORD=user_password
 
     steps:
       - checkout
@@ -35,17 +35,4 @@ jobs:
           command: |
             composer install
             phpunit
-  deploy:
-    docker:
-      - image: google/cloud-sdk:latest
-    steps:
-      - checkout
-      - run:
-          name: Authenticate with Google Cloud
-          command: |
-            gcloud auth activate-service-account --key-file=<path-to-key-file>
-      - run:
-          name: Deploy to Google Cloud
-          command: |
-            gcloud config set project <your-project-id>
-            gcloud app deploy app.yaml --quiet
+  
