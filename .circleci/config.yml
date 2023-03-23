@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: docker:stable
+      - image: wordpress:latest
 
     steps:
       - checkout
