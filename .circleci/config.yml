@@ -3,12 +3,9 @@ jobs:
   build:
     docker:
       - image: docker:stable
+
     steps:
       - checkout
-      - run:
-          name: Install Git
-          command: |
-            export PATH="/usr/local/bin/git:$PATH"
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
