@@ -32,7 +32,7 @@ jobs:
           name: Configure WordPress
           command: |
             cd ~/repo/wordpress
-            mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
+            brew mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
             cp wp-tests-config-sample.php wp-tests-config.php
             sed -i 's/youremptytestdbnamehere/wordpress_test/' wp-tests-config.php
             sed -i 's/yourusernamehere/root/' wp-tests-config.php
