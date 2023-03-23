@@ -1,30 +1,58 @@
 version: 2.1
+
 jobs:
   build:
     docker:
-      - image: docker:stable
-
+      - image: circleci/php:7.4-apache-node-browsers
+    working_directory: ~/repo
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
-          name: Build WordPress Docker image
+          name: Install dependencies
           command: |
-            docker build -t wordpress:latest .
-          environment:
-            DOCKER_BUILDKIT: 1
+            apt-get update && apt-get install -y \
+              curl \
+              git \
+              libpng-dev \
+              libjpeg-dev \
+              libzip-dev \
+              unzip \
+              zip \
+              php-xml \
+              php-mbstring \
+              php-intl \
+              php-zip \
+              php-gd \
+              php-curl \
+              php-mysql \
+              mysql-client
+            curl https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
       - run:
-          name: Run WordPress Docker container
+          name: Clone WordPress Core
           command: |
-            docker run --name wordpress -p 8080:80 -d wordpress:latest
+            git clone --depth=1 https://github.com/WordPress/WordPress.git ~/repo/wordpress
+            cd ~/repo/wordpress
+            composer install --prefer-dist --no-dev
       - run:
-          name: Run WordPress installation
+          name: Configure WordPress
           command: |
-            docker exec -it wordpress /bin/bash -c "curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress/* /var/www/html && rm latest.tar.gz"
+            cd ~/repo/wordpress
+            mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
+            cp wp-tests-config-sample.php wp-tests-config.php
+            sed -i 's/youremptytestdbnamehere/wordpress_test/' wp-tests-config.php
+            sed -i 's/yourusernamehere/root/' wp-tests-config.php
+            sed -i 's/yourpasswordhere//' wp-tests-config.php
+            sed -i 's|localhost|127.0.0.1|' wp-tests-config.php
+      - run:
+          name: Install PHPUnit
+          command: |
+            cd ~/repo/wordpress
+            wget -O phpunit https://phar.phpunit.de/phpunit-9.phar
+            chmod +x phpunit
+            sudo mv phpunit /usr/local/bin/phpunit
       - run:
           name: Run WordPress tests
           command: |
-            composer install
-            phpunit
-  
+            cd ~/repo/wordpress
+            phpunit --configuration phpunit.xml.dist
