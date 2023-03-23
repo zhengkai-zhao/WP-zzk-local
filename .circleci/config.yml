@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: docker:stable
       - image: wordpress:latest
-      - image: mysql:latest
 
     environment:
       - WORDPRESS_DB_HOST=mysql
@@ -34,7 +33,7 @@ jobs:
       - run:
           name: Run WordPress tests
           command: |
-            cd /var/www/html/wp-content/plugins/my-plugin
+            cd ./wordpress/html/wp-content/plugins/my-plugin
             composer install
             phpunit
   deploy:
