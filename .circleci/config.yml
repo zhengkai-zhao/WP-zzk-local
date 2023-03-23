@@ -18,14 +18,13 @@ jobs:
       - run:
           name: Build WordPress Docker image
           command: |
-            docker build -t wordpress .
+            docker build -t wordpress:latest .
           environment:
             DOCKER_BUILDKIT: 1
       - run:
           name: Run WordPress Docker container
           command: |
-            docker run -d -p 8080:80 wordpress
-            sleep 10
+            docker run --name wordpress -p 8080:80 -d wordpress:latest
       - run:
           name: Run WordPress installation
           command: |
