@@ -1,14 +1,11 @@
 FROM php:7.4-apache
 
 # Install Homebrew
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Add Homebrew to PATH
 RUN echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /root/.bashrc && \
     eval $(/opt/homebrew/bin/brew shellenv)
-
-# Install Git with Homebrew
-RUN brew install git
 
 # Install required PHP extensions
 RUN docker-php-ext-install pdo_mysql
