@@ -4,6 +4,8 @@ jobs:
     working_directory: ~/app
     docker:
       - image: docker:stable
+      - image: wordpress:latest
+      - image: mysql:latest
 
     environment:
       - WORDPRESS_DB_HOST=mysql
@@ -32,7 +34,9 @@ jobs:
       - run:
           name: Run WordPress tests
           command: |
-            docker exec -it $(docker ps -qf "ancestor=wordpress") /bin/sh -c "cd wp-content/plugins/test-bundle && composer install && vendor/bin/wp-cli test run"
+            cd /var/www/html/wp-content/plugins/my-plugin
+            composer install
+            phpunit
   deploy:
     docker:
       - image: google/cloud-sdk:latest
