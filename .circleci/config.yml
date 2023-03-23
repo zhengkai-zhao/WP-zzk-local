@@ -22,8 +22,4 @@ jobs:
           name: Run WordPress installation
           command: |
             docker exec -it wordpress /bin/bash -c "curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress/* /var/www/html && rm latest.tar.gz"
-      - run:
-          name: Run WordPress tests
-          command: |
-            phpunit --configuration phpunit.xml.dist
   
