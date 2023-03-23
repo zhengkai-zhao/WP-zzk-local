@@ -1,6 +1,7 @@
 FROM php:7.4-apache
 
 # Install Homebrew
+RUN export HOMEBREW_BREW_GIT_REMOTE=https://github.com/Homebrew/brew.git
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # Add Homebrew to PATH
