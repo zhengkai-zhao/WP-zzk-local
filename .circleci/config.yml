@@ -1,7 +1,42 @@
+version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/php:8.2.4
+      - image: docker:stable
     steps:
       - checkout
-      - run: php --version
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t my-wordpress-app .
+      - run:
+          name: Run Docker container
+          command: |
+            docker run -d -p 8080:80 my-wordpress-app
+            sleep 10
+      - run:
+          name: Run WordPress installation
+          command: |
+            curl -X POST \
+              --data "weblog_title=My WordPress Site&user_name=admin&admin_password=admin&admin_password2=admin&admin_email=admin@example.com" \
+              http://localhost:8080/wp-admin/install.php?step=2
+      - run:
+          name: Run WordPress tests
+          command: |
+            docker exec -it $(docker ps -qf "ancestor=my-wordpress-app") /bin/sh -c "cd wp-content/plugins/test-bundle && composer install && vendor/bin/wp-cli test run"
+  deploy:
+    docker:
+      - image: google/cloud-sdk:latest
+    steps:
+      - checkout
+      - run:
+          name: Authenticate with Google Cloud
+          command: |
+            gcloud auth activate-service-account --key-file=<path-to-key-file>
+      - run:
+          name: Deploy to Google Cloud
+          command: |
+            gcloud config set project <your-project-id>
+            gcloud app deploy app.yaml --quiet
