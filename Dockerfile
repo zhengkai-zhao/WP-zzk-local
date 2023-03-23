@@ -3,6 +3,9 @@ FROM php:7.4-apache
 # Install Homebrew
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# Install Git
+RUN brew install git
+
 # Add Homebrew to PATH
 RUN echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /root/.bashrc && \
     eval $(/opt/homebrew/bin/brew shellenv)
