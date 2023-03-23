@@ -1,20 +1,22 @@
 FROM php:7.4-apache
 
-# Install required packages using Homebrew
-RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-    && echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /root/.zprofile \
-    && eval "$(/opt/homebrew/bin/brew shellenv)" \
-    && brew install freetype jpeg libpng mcrypt zip unzip curl
+# Install Homebrew
+RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Install Git
-RUN brew install git
+# Add Homebrew to PATH
+RUN echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /root/.bashrc && \
+    eval $(/opt/homebrew/bin/brew shellenv)
 
-# Install required PHP extensions
-RUN docker-php-ext-install mysqli pdo_mysql zip gd iconv \
-    && a2enmod rewrite
+# Install required packages with Homebrew
+RUN brew install git unzip libzip && \
+    docker-php-ext-install zip pdo_mysql
 
-# Copy application files to container
-COPY . /var/www/html
+# Copy and set up WordPress files
+COPY . /var/www/html/
+RUN chown -R www-data:www-data /var/www/html/
 
-# Start Apache web server
+# Expose port 80
+EXPOSE 80
+
+# Start Apache
 CMD ["apache2-foreground"]
