@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  test:
     working_directory: ~/project
     macos:
       xcode: "12.5.1"
@@ -19,11 +19,8 @@ jobs:
           MYSQL_ROOT_PASSWORD: example
         ports:
           - "3306:3306"
-
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: Install dependencies
           command: |
