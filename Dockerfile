@@ -7,9 +7,11 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/instal
 RUN echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /root/.bashrc && \
     eval $(/opt/homebrew/bin/brew shellenv)
 
-# Install required packages with Homebrew
-RUN brew install git unzip libzip && \
-    docker-php-ext-install zip pdo_mysql
+# Install Git with Homebrew
+RUN brew install git
+
+# Install required PHP extensions
+RUN docker-php-ext-install pdo_mysql
 
 # Copy and set up WordPress files
 COPY . /var/www/html/
