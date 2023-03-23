@@ -1,6 +1,5 @@
 version: "3.0"
 services:
-  tty: true
   db:
     image: mysql:5.7
     platform: linux/amd64
