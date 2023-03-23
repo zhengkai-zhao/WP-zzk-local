@@ -29,10 +29,16 @@ jobs:
             curl https://getcomposer.org/installer | php
             mv composer.phar /usr/local/bin/composer
       - run:
+          name: Clone WordPress Core
+          command: |
+            git clone --depth=1 https://github.com/WordPress/WordPress.git ~/repo/wordpress
+            cd ~/repo/wordpress
+            composer install --prefer-dist --no-dev
+      - run:
           name: Configure WordPress
           command: |
             cd ~/repo/wordpress
-            brew mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
+            mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
             cp wp-tests-config-sample.php wp-tests-config.php
             sed -i 's/youremptytestdbnamehere/wordpress_test/' wp-tests-config.php
             sed -i 's/yourusernamehere/root/' wp-tests-config.php
