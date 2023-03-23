@@ -1,45 +1,31 @@
 version: 2.1
-
 jobs:
   build:
     docker:
-      # Use the official WordPress Docker image
-      - image: wordpress:latest
-        environment:
-          WORDPRESS_DB_HOST: 127.0.0.1:3306
-          WORDPRESS_DB_NAME: my_wordpress_db
-          WORDPRESS_DB_USER: my_wordpress_user
-          WORDPRESS_DB_PASSWORD: my_wordpress_password
-          WORDPRESS_CONFIG_EXTRA: |
-            define('WP_DEBUG', true);
-            define('WP_DEBUG_LOG', true);
-            define('WP_DEBUG_DISPLAY', false);
-            define('SCRIPT_DEBUG', true);
-
-      # Add MySQL container for database
-      - image: mysql:latest
-        environment:
-          MYSQL_ROOT_PASSWORD: my_mysql_root_password
-          MYSQL_DATABASE: my_wordpress_db
-          MYSQL_USER: my_wordpress_user
-          MYSQL_PASSWORD: my_wordpress_password
+      - image: docker:stable
 
     steps:
       - checkout
-
-      # Install dependencies for WordPress tests
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
-          name: Install Dependencies
+          name: Build WordPress Docker image
           command: |
-            apt-get update
-            apt-get install -y libpng-dev libjpeg-dev libxml2-dev libfreetype6-dev libzip-dev
-            docker-php-ext-configure gd --with-freetype --with-jpeg
-            docker-php-ext-install -j "$(nproc)" gd mysqli pdo_mysql zip xmlrpc soap
-
-      # Run the WordPress unit tests
+            docker build -t wordpress:latest .
+          environment:
+            DOCKER_BUILDKIT: 1
       - run:
-          name: Run Unit Tests
+          name: Run WordPress Docker container
+          command: |
+            docker run --name wordpress -p 8080:80 -d wordpress:latest
+      - run:
+          name: Run WordPress installation
+          command: |
+            docker exec -it wordpress /bin/bash -c "curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress/* /var/www/html && rm latest.tar.gz"
+      - run:
+          name: Run WordPress tests
           command: |
             cd wp-content/plugins/my-plugin
             bash bin/install-wp-tests.sh wordpress_test my_wordpress_user my_wordpress_password localhost latest
             phpunit
+  
