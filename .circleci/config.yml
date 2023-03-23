@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: docker:stable
-      - platform: linux/amd64
 
     steps:
       - checkout
