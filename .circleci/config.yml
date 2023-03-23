@@ -4,14 +4,22 @@ jobs:
     docker:
       - image: docker:stable
 
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_NAME=wordpress_db
+      - WORDPRESS_DB_USER=user
+      - WORDPRESS_DB_PASSWORD=user_password
+
     steps:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Build Docker image
+          name: Build WordPress Docker image
           command: |
             docker build -t wordpress .
+          environment:
+            DOCKER_BUILDKIT: 1
       - run:
           name: Run Docker container
           command: |
@@ -20,9 +28,13 @@ jobs:
       - run:
           name: Run WordPress installation
           command: |
-            curl -X POST \
-              --data "weblog_title=My WordPress Site&user_name=admin&admin_password=admin&admin_password2=admin&admin_email=admin@example.com" \
-              http://localhost:8080/wp-admin/install.php?step=2
+            docker run --rm \
+              -p 8080:80 \
+              -e WORDPRESS_DB_HOST=$WORDPRESS_DB_HOST \
+              -e WORDPRESS_DB_USER=$WORDPRESS_DB_USER \
+              -e WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
+              -e WORDPRESS_DB_NAME=$WORDPRESS_DB_NAME \
+              my-wordpress-app:latest
       - run:
           name: Run WordPress tests
           command: |
