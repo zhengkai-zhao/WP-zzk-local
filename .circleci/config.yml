@@ -1,14 +1,15 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/app
     docker:
       - image: docker:stable
 
     environment:
-      - WORDPRESS_DB_HOST=db:3306
-      - WORDPRESS_DB_NAME=wordpress_db
-      - WORDPRESS_DB_USER=user
-      - WORDPRESS_DB_PASSWORD=user_password
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=password
+      - WORDPRESS_DB_NAME=wordpress
 
     steps:
       - checkout
