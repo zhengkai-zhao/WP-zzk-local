@@ -25,7 +25,6 @@ jobs:
       - run:
           name: Run WordPress tests
           command: |
-            cd wp-content/plugins/my-plugin
             bash bin/install-wp-tests.sh wordpress_test my_wordpress_user my_wordpress_password localhost latest
             phpunit
   
