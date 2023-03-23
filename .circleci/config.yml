@@ -1,7 +1,25 @@
+version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/php:8.2.4
+      - image: docker:stable
+
     steps:
       - checkout
-      - run: php --version
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: Build WordPress Docker image
+          command: |
+            docker build -t wordpress:latest .
+          environment:
+            DOCKER_BUILDKIT: 1
+      - run:
+          name: Run WordPress Docker container
+          command: |
+            docker run --name wordpress -p 8080:80 -d wordpress:latest
+      - run:
+          name: Run WordPress installation
+          command: |
+            docker exec -it wordpress /bin/bash -c "curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress/* /var/www/html && rm latest.tar.gz"
+  
