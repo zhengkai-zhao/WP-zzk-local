@@ -1,13 +1,12 @@
 version: 2.1
+
 jobs:
   build:
     docker:
-      - image: docker:stable
-
+      - image: circleci/php:7.4-apache-node-browsers
+    working_directory: ~/repo
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: Install dependencies
           command: |
@@ -30,22 +29,24 @@ jobs:
             curl https://getcomposer.org/installer | php
             mv composer.phar /usr/local/bin/composer
       - run:
-          name: Build WordPress Docker image
+          name: Configure WordPress
           command: |
-            docker build -t wordpress:latest .
-          environment:
-            DOCKER_BUILDKIT: 1
+            cd ~/repo/wordpress
+            mysql -e "CREATE DATABASE IF NOT EXISTS wordpress_test;" -uroot
+            cp wp-tests-config-sample.php wp-tests-config.php
+            sed -i 's/youremptytestdbnamehere/wordpress_test/' wp-tests-config.php
+            sed -i 's/yourusernamehere/root/' wp-tests-config.php
+            sed -i 's/yourpasswordhere//' wp-tests-config.php
+            sed -i 's|localhost|127.0.0.1|' wp-tests-config.php
       - run:
-          name: Run WordPress Docker container
+          name: Install PHPUnit
           command: |
-            docker run --name wordpress -p 8080:80 -d wordpress:latest
-      - run:
-          name: Run WordPress installation
-          command: |
-            docker exec -it wordpress /bin/bash -c "curl -O https://wordpress.org/latest.tar.gz && tar -xzf latest.tar.gz && mv wordpress/* /var/www/html && rm latest.tar.gz"
+            cd ~/repo/wordpress
+            wget -O phpunit https://phar.phpunit.de/phpunit-9.phar
+            chmod +x phpunit
+            sudo mv phpunit /usr/local/bin/phpunit
       - run:
           name: Run WordPress tests
           command: |
-            composer install
-            phpunit
-  
+            cd ~/repo/wordpress
+            phpunit --configuration phpunit.xml.dist
