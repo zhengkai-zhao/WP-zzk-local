@@ -23,13 +23,13 @@ jobs:
       - run:
           name: Run WordPress Docker container
           command: |
-            docker run -d -p 8081:80 wordpress
+            docker run -d -p 8080:80 wordpress
             sleep 10
       - run:
           name: Run WordPress installation
           command: |
             docker run --rm \
-              -p 8081:80 \
+              -p 8080:80 \
               -e WORDPRESS_DB_HOST=$WORDPRESS_DB_HOST \
               -e WORDPRESS_DB_USER=$WORDPRESS_DB_USER \
               -e WORDPRESS_DB_PASSWORD=$WORDPRESS_DB_PASSWORD \
