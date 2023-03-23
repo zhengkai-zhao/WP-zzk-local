@@ -8,6 +8,14 @@ jobs:
       - run:
           name: Add Git to PATH
           command: export PATH="/usr/local/git/bin:$PATH"
+      - run:
+          name: Install Homebrew
+          command: |
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - run:
+          name: Install packages
+          command: |
+            brew install git
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
