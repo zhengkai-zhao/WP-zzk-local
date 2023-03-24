@@ -8,34 +8,35 @@ assignees: ''
 ---
 
 
-## Issue Title
+# Summary
 
-[//]: # (Provide a descriptive and concise title for the issue)
+1-2 sentence summary of what this document is about and why we should work on it. 
 
-## Issue Description
+## Background
 
-[//]: # (Provide a detailed description of the issue, including the context and any relevant background information.)
+What is the motivation for these changes? What problems will this solve? Include graphs, metrics, etc. if relevant. 
 
-## Expected Behavior
+## Problem statement
 
-[//]: # (Describe the behavior or outcome that you expect to see as a result of this issue being addressed.)
+Describe the problem you're trying to solve by doing this work.
 
-## Actual Behavior
+# Solution
 
-[//]: # (Describe the behavior or outcome that you are currently seeing, which is causing this issue.)
+Describe the solution to the problems outlined above. Include enough detail to allow for productive discussion from readers, including diagrams if necessary.
 
-## Steps to Reproduce
+### Goal
 
-[//]: # (Provide a detailed list of steps that can be used to reproduce the issue, including any relevant code snippets, screenshots, or other details.)
+Describe the goal of this issue helps team to have consensus. 
 
-## Proposed Solution
+### Tasks
 
-[//]: # (If you have any ideas or proposals for how to address this issue, please describe them here. This can include design or frontend changes that may be required, as well as any other relevant details.)
+- [ ]  ...
+- [ ]  ...
 
-## Acceptance Criteria
+### Any concerns
 
-[//]: # (Provide a list of criteria that must be met in order for this issue to be considered resolved. This can include specific design or frontend changes that need to be implemented, as well as any other relevant details.)
+Ask any unresolved questions about the proposed solution here.
 
-## Additional Information
+# Related documents
 
-[//]: # (Include any other relevant information or details that may be useful in addressing this issue, such as related issues, dependencies, or constraints.) 
+Include links to other pages as necessary (e.g. technical design doc, project proposal, etc.)
