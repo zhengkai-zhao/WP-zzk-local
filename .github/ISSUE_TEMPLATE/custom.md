@@ -1,3 +1,13 @@
+---
+name: Standard issue
+about: Suggest an idea for this project
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+
 ## Issue Title
 
 [//]: # (Provide a descriptive and concise title for the issue)
