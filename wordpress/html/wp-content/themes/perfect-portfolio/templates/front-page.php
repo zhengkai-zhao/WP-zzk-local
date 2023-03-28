@@ -5,16 +5,12 @@ Template Name: home
 get_header(); ?>
 
 <main>
-  <!--  intro  start  -->
-  <section class="intro">
+  <section class="hero">
     <div class="container">
-      <div class="intro-content">
-        <h1>Hi, My name is Zhao Zhengkai</h1>
-        <h3>I'm a designer & art director<br>specializing in graphic & UI/UX design</h3>
+      <h1 class="heading">Make ordinary to extraordinary<br>by design.</h1>
       </div>
     </div>
   </section>
-  <!-- intro  end  -->
 
   <?php
   do_action( 'rrtc_before_portfolios' ); ?>

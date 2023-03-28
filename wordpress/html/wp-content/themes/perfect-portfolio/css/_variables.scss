@@ -1,19 +1,35 @@
-@import url("https://use.typekit.net/qxz3ceg.css");
+// Font
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Syne:wght@500;600;700&display=swap');
 
-$font-primary: 'Syne',sans-serif;
+$font-title: 'Syne',sans-serif;
 $font-body: 'Red Hat Text',sans-serif;
 
+// Font sizes
+$pageTtl: calc(20px + 9vw);
+
+// Font weights
+$regular: 500;
+$medium: 600;
+$bold: 700;
+
+// Line heights
+$line-height-base: 1.5;
+$line-height-lg: 1.75;
+$line-height-sm: 1.25;
+
+// Colors
 $white: #fff;
 $black: #1B1D21;
 
-$bg: #F0F0EE;
-$brand: #1B4949;
-$txt: #28292D;
+$bg: #FAFAF8;
+$primary: #004A49;
+$black: #2D2D2D;
 $linkOff: #848484;
 $linkOff-hover: #98A6AE;
 
+
+// Animation
 $transition:                  all 0.5s ease-in-out !default;
 $transition-fade:             opacity .15s linear !default;
 $transition-collapse:         height .35s ease !default;

@@ -1,5 +1,13 @@
 @import "variables";
 
+@mixin pageTtl {
+  color: $primary;
+  font-weight: $bold;
+  font-family: $font-title;
+  font-size: $pageTtl;
+  text-align: left;
+}
+
 @mixin mq-xs {
   @media ( max-width: 0) {
     @content;
