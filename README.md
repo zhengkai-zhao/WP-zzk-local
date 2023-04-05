@@ -1,6 +1,6 @@
 # Design
 
-### statement ###
+### Statement ###
 
 The purpose of this website is to showcase the design works of Zhao Zhengkai, a designer with over a decade of experience in graphics, web design, UI/UX, and art direction.
 
